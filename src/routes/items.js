@@ -30,21 +30,25 @@ function searchItems({ q, category, kind }) {
     JOIN users ON users.id = items.user_id
     WHERE items.status != 'removed'
   `;
+  const params = [];
 
   if (q) {
-    sql += ` AND items.title || ' ' || items.description || ' ' || items.location LIKE '%${q}%'`;
+    sql += " AND items.title || ' ' || items.description || ' ' || items.location LIKE ?";
+    params.push(`%${q}%`);
   }
 
   if (category && category !== "all") {
-    sql += ` AND items.category = '${category}'`;
+    sql += " AND items.category = ?";
+    params.push(category);
   }
 
   if (kind && kind !== "all") {
-    sql += ` AND items.kind = '${kind}'`;
+    sql += " AND items.kind = ?";
+    params.push(kind);
   }
 
   sql += " ORDER BY items.created_at DESC LIMIT 50";
-  return db.prepare(sql).all();
+  return db.prepare(sql).all(...params);
 }
 
 router.get("/", (req, res) => {
