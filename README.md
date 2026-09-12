@@ -59,6 +59,9 @@ src/views/             EJS pages
 src/public/css/        Styles
 ```
 
+
+
+
 ## Assignment notes
 
 Host this somewhere your classmates and instructor can reach. Walk the running app until you can explain:
@@ -66,5 +69,6 @@ Host this somewhere your classmates and instructor can reach. Walk the running a
 - how a request becomes a row in SQLite
 - where authentication is enforced
 - how search, filters, and item pages load data
+
 
 Then look for a security defect in the running system, document how to trigger it, and patch it without breaking normal use of the board. Submit the hosted URL, a short architecture sketch, the writeup, and the patched repo.
